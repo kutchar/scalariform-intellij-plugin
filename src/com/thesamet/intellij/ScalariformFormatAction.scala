@@ -44,8 +44,8 @@ class ScalariformFormatAction extends AnAction {
   } yield FileDocument(vfile, document)
 
   private def formattingPreferences: FormattingPreferences = {
-    val component: ScalariformApplicationComponent =
-      ApplicationManager.getApplication.getComponent(classOf[ScalariformApplicationComponent])
+    val component: ScalariformProjectComponent =
+      ApplicationManager.getApplication.getComponent(classOf[ScalariformProjectComponent])
 
     FormattingPreferences.setPreference(RewriteArrowSymbols, component.isRewriteArrowSymbols)
       .setPreference(IndentSpaces, component.getIndentSpaces.toInt)

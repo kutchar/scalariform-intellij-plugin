@@ -13,9 +13,14 @@ import javax.swing.*;
 /**
  * Created by nadavsr on 6/1/14.
  */
-@State(name = "ScalariformSettings", storages = {@Storage(id = "other", file = StoragePathMacros.APP_CONFIG + "/other.xml"
-)})
-public class ScalariformApplicationComponent implements Configurable, ApplicationComponent, PersistentStateComponent<ScalariformApplicationComponent> {
+@State(
+    name = "ScalariformSettings",
+    storages = {
+        @Storage(id = "default", file = StoragePathMacros.PROJECT_FILE),
+        @Storage(id = "dir", file = StoragePathMacros.PROJECT_CONFIG_DIR + "/scalariform.xml", scheme = StorageScheme.DIRECTORY_BASED)
+    }
+)
+public class ScalariformProjectComponent implements Configurable, ProjectComponent, PersistentStateComponent<ScalariformProjectComponent> {
     private boolean alignParameters = false;
     private boolean alignSingleLineCase = false;
     private boolean compactControlReadability = false;
@@ -37,20 +42,26 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
     private boolean indentLocalDefs;
     private boolean spaceInsideBrackets;
 
-    public ScalariformApplicationComponent() {
+    public ScalariformProjectComponent() {
     }
 
     public void initComponent() {
-        // TODO: insert component initialization logic here
     }
 
     public void disposeComponent() {
-        // TODO: insert component disposal logic here
+    }
+
+    @Override
+    public void projectOpened() {
+    }
+
+    @Override
+    public void projectClosed() {
     }
 
     @NotNull
     public String getComponentName() {
-        return "com.thesamet.intellij.ScalariformApplicationComponent";
+        return "com.thesamet.intellij.ScalariformProjectComponent";
     }
 
     public boolean isAlignParameters() {
@@ -245,11 +256,11 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
         form = null;
     }
 
-    public void loadState(ScalariformApplicationComponent state) {
+    public void loadState(ScalariformProjectComponent state) {
         XmlSerializerUtil.copyBean(state, this);
     }
 
-    public ScalariformApplicationComponent getState() {
+    public ScalariformProjectComponent getState() {
         return this;
     }
 

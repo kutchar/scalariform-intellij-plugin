@@ -24,13 +24,13 @@
 
     <application-components>
         <!-- Add your application components here -->
-        <component>
-            <implementation-class>com.thesamet.intellij.ScalariformApplicationComponent</implementation-class>
-        </component>
     </application-components>
 
     <project-components>
         <!-- Add your project components here -->
+        <component>
+            <implementation-class>com.thesamet.intellij.ScalariformProjectComponent</implementation-class>
+        </component>
     </project-components>
 
 
